@@ -24,7 +24,7 @@ public class Trip {
     private Double price;
 
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Collection<Reservation> trips;
+    private Collection<Reservation> reservations;
 
     @ManyToMany
     @JoinTable(name = "clients_trips")
