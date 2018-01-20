@@ -1,5 +1,6 @@
 package com.bohdan.hubar.discovery.reservation;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ public class ReservationController {
     }
 
     @GetMapping(value = "/reservations/client/{clientId}")
+    @JsonView(Reservation.WithTripsView.class)
     public List<Reservation> getClientsReservationByClientId(@PathVariable Long clientId) {
         return reservationService.findReservationsByClientId(clientId);
     }
