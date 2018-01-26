@@ -2,10 +2,7 @@ package com.bohdan.hubar.discovery.client;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @JsonView(Client.WithTripsView.class)
+    @JsonView(Client.MinimalView.class)
     @GetMapping(value = "/clients")
     public List<Client> getAllClients() {
         return clientService.getAllClients();
@@ -29,5 +26,11 @@ public class ClientController {
     @PostMapping(value = "/clients")
     public Client createClient(@RequestBody Client client) {
         return clientService.createClient(client);
+    }
+
+    @JsonView(Client.WithTripsView.class)
+    @GetMapping(value = "clients/{id}")
+    public Client getClientById(@PathVariable Long id) {
+        return clientService.findById(id);
     }
 }
