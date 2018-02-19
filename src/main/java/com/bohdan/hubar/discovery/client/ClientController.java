@@ -16,7 +16,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @JsonView(Client.MinimalView.class)
+    @JsonView(Client.WithTripsView.class)
     @GetMapping(value = "/clients")
     public List<Client> getAllClients() {
         return clientService.getAllClients();
