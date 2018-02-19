@@ -33,7 +33,12 @@ public class Client {
     @JsonView(MinimalView.class)
     private String phone;
 
-    @ManyToMany(mappedBy = "clients")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "trip_to_clients",
+            joinColumns = { @JoinColumn(name = "client_id") },
+            inverseJoinColumns = { @JoinColumn(name = "trip_id") }
+    )
     @JsonView(WithTripsView.class)
     private Collection<Trip> trips;
 

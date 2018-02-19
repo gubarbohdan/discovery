@@ -25,4 +25,8 @@ public class ReservationService {
                 .flatMap(x -> x.getReservations().stream())
                 .collect(Collectors.toList());
     }
+
+    public Reservation save(Reservation reservation) {
+        return reservationRepository.save(reservation);
+    }
 }

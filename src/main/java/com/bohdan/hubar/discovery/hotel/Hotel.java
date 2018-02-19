@@ -21,7 +21,7 @@ public class Hotel {
     @JsonView(MinimalView.class)
     private String name;
 
-    @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonView(WithReservationsView.class)
     private Collection<Reservation> reservations;
 

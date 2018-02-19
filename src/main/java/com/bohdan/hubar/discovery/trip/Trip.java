@@ -29,12 +29,11 @@ public class Trip {
     @JsonView(MinimalView.class)
     private Double price;
 
-    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JsonView(WithReservationsView.class)
     private Collection<Reservation> reservations;
 
-    @ManyToMany
-    @JoinTable(name = "clients_trips")
+    @ManyToMany(mappedBy = "trips")
     @JsonView(WithClientsView.class)
     private Collection<Client> clients;
 

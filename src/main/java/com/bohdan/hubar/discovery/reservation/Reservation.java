@@ -28,7 +28,7 @@ public class Reservation {
     @JsonView(WithHotelsView.class)
     private Hotel hotel;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JsonView(WithTripsView.class)
     private Trip trip;
 
